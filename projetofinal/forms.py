@@ -1,0 +1,3 @@
+
+
+class InviteForm(forms.ModelForm):
