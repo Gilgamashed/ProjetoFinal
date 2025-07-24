@@ -1,0 +1,30 @@
+{% extends 'projetofinal/base.html' %}
+{% load widget_tweaks %}  <!-- pode ser colocado na pagina template base -->
+{% block title %}Signup{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <h2>Aceitar Convite</h2>
+  
+  {% if invite %}
+    <div class="alert alert-info">
+      Registrando como {{ invite.get_role_display() }}
+    </div>
+  {% endif %}
+
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <input type="hidden" name="invite_token" value="{{ request.GET.token }}">
+    
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" value="{{ form.email.value }}" class="form-control" disabled>
+    </div>
+    
+    {{ form.as_p }}
+    
+    <button type="submit" class="btn btn-primary">Completar Registro</button>
+  </form>
+</div>
+{% endblock %}

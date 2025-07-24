@@ -17,13 +17,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from projetofinal.views import invite_user, accept_invite
 
 from projetofinal.views import HomeView
 
 urlpatterns = [
-    path('accounts/', include('allauth.urls')),
+    path('account/', include('allauth.urls')),
+    path('invite/', invite_user, name='send_invite'),
+    path('invite/<str:token>/', accept_invite, name='accept_invite'),
+
     path("admin/", admin.site.urls),
     path('', HomeView.as_view(), name='home'),
-    path('dashboard', HomeView.as_view(), name='dashboard'),
+    path('dashboard', HomeView.as_view(), name='dashboard'),    #TODO provisório
 
 ]

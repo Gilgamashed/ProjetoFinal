@@ -59,6 +59,7 @@ TODO
 	    invite_user views.py
 	    signup.html
 	    contatoadmin.html
+	    cobrir com testes
 
 	Implementar CRUD para tarefas básico
 

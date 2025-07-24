@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+SITE_NAME = 'Meu Primeiro CRM'
+#SITE_DOMAIN = ""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -82,6 +84,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Registration settings
 ACCOUNT_ADAPTER = 'projetofinal.adapters.CustomAccountAdapter'
+ACCOUNT_ALLOW_REGISTRATION = False
 ACCOUNT_LOGIN_METHODS = {'email'}  # auth por email?
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*']
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -93,7 +96,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,6 +152,10 @@ EMAIL_PORT=int(os.getenv('EMAIL_PORT'))
 EMAIL_HOST_USER=os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=os.getenv('EMAIL_USE_TLS')
+
+ACCOUNT_FORMS = {
+    'signup': 'accounts.form.ConviteSignupForm',
+}
 
 
 # Internationalization

@@ -16,32 +16,38 @@
 
     <div class ="mb-3">
       <label for="id_login">E-mail</label>
-    {{ form.username.label_tag }}
-    {{ form.username }}
+    {{ form.login|add_class:"form-control" }}
     </div>
     <div class="mb-3">
-    {{ form.password.label_tag }}
-    {{ form.password }}
+      <label for="id_password">Senha</label>
+    {{ form.password|add_class:"form-control" }}
     </div>
 
-    <button type="submit">Login</button>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="id_remember" name="remember">
+      <label class="form-check-label" for="id_remember">Lembre-se de mim</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
       <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
 
     <!-- Security links -->
     <div class="mt-3">
-      <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>
-      {% if ALLOW_REGISTRATION %}
-        | <a href="{% url 'signup' %}">Register</a>
+      <a href="{% url 'account_reset_password' %}">Esqueceu sua senha?</a>
+      {% if ACCOUNT_ALLOW_REGISTRATION|default:True %}
+        | <a href="{% url 'account_signup' %}">Registrar</a>
       {% endif %}
-
     </div>
+
+    <div class="mt-3">
       {% if form.non_field_errors %}
         {% for error in form.non_field_errors %}
             <div class="my-3 alert alert-danger">
                 {{ error }}
             </div>
         {% endfor %}
-    {% endif %}
+      {% endif %}
+    </div>
   </form>
 </div>
 {% endblock %}
